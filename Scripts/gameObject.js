@@ -12,6 +12,8 @@ export class GameObject {
         this.sprite = sprite ?? {x: 0, y: 0, width: TITLE_SIZE, height: TITLE_SIZE, image: ""};
         this.position = position ?? {x: 0,y: 0};
         this.scale = scale ?? 1;
+
+        
     }
     draw(ctx){
         ctx.fillRect(

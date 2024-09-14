@@ -16,14 +16,35 @@ window.addEventListener('DOMContentLoaded', function () {
     canvas.width = GAME_WIDTH;
     canvas.height = GAME_HEIGHT;
 
-    const world = new World();
-    world.drawGrid(ctx);
 
-    const hero = new Hero({
-        position: {x:1, y:1}
-    });
-    hero.draw(ctx);
+    class Game {
+        constructor(){
+            this.world = new World();
+            this.hero = new Hero({
+                game: this,
+                position: {x:1, y:1}
+            });
+            this.input = new Input();
+        }
+        render(ctx){
+            this.hero.update();
+            this.world.drawGrid(ctx);
+            this.hero.draw(ctx);
+            
+        }
+    }
 
-    const input = new Input();
+
+
+    const game = new Game();
+    animate()
+
+    function animate(){
+        requestAnimationFrame(animate);
+        game.render(ctx);
+    }
+    
+    
+
 
 })

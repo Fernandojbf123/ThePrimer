@@ -1,8 +1,8 @@
-const LEFT = "ArrowLeft";
-const RIGHT = "ArrowRight";
-const UP = "ArrowUP";
-const DOWN = "ArrowDown";
-const ACTION = "e"
+export const LEFT = "LEFT";
+export const RIGHT = "RIGHT";
+export const UP = "UP";
+export const DOWN = "DOWN";
+export const ACTION = "ACTION"
 
 export class Input {
     constructor(){
@@ -15,7 +15,7 @@ export class Input {
                 this.keyPressed(LEFT)
             } else if (e.key === "ArrowRight" || e.key.toLowerCase() == "d") {
                 this.keyPressed(RIGHT)
-            } else if (e.key === "ArrowUP" || e.key.toLowerCase() == "w") {
+            } else if (e.key === "ArrowUp" || e.key.toLowerCase() == "w") {
                 this.keyPressed(UP) 
             } else if (e.key === "ArrowDown" || e.key.toLowerCase() == "s") {
                 this.keyPressed(DOWN)
@@ -30,7 +30,7 @@ export class Input {
                 this.keyRealeased(LEFT)
             } else if (e.key === "ArrowRight" || e.key.toLowerCase() == "d") {
                 this.keyRealeased(RIGHT)
-            } else if (e.key === "ArrowUP" || e.key.toLowerCase() == "w") {
+            } else if (e.key === "ArrowUp" || e.key.toLowerCase() == "w") {
                 this.keyRealeased(UP) 
             } else if (e.key === "ArrowDown" || e.key.toLowerCase() == "s") {
                 this.keyRealeased(DOWN)
@@ -45,14 +45,16 @@ export class Input {
             this.keys.unshift(key)
         }
         console.log(key, this.keys)
-
     }
 
     keyRealeased(key){
         const index = this.keys.indexOf(key);
         if (index === -1) return;
         this.keys.splice(index,1)
-        console.log(key, this.keys)
+    }
+
+    get lastKey(){
+        return this.keys[0];
     }
     
 }
