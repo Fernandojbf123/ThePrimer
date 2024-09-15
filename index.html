@@ -5,37 +5,38 @@
     <title>The Primer - BelloDev Games</title>
 
     <style>
-        * {
+        /* * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-        }
-
-        body {
-            width: 100vw;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-
-        #title {
-            padding-bottom: 2%;
-        }
+        } */
 
         #canvas1 {
             border: 2px solid black;
-            /* position: absolute;  */
+            position: absolute; 
+            top: 50%;
+            left: 50%;
+            translate: -50% -50%;
         }
+
+        .assets{
+            display: none;
+        }
+
+
     </style>
 
 </head>
 <body>
-    <h1 id="title">The Primer - BelloDev Games</h1>
-    <div>
-        <canvas id="canvas1"></canvas>
+   
+    <canvas id="canvas1"></canvas>
+
+    <div class="assets">
+        <img src="/images/backgroundLevel1.png" id="backgroundLevel1" alt="backgroundLevel1">
+        <img src="/images/foregroundLevel1.png" id="foregroundLevel1" alt="foregroundLevel1">
+        <img src="/images/Hero.png" id="hero1" alt="Hero">
     </div>
+
     <script type="module" src="./scripts/main.js"></script>
     <script type="module" src="./scripts/world.js"></script>
 

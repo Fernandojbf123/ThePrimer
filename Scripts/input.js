@@ -44,7 +44,7 @@ export class Input {
         if (this.keys.indexOf(key) === -1){
             this.keys.unshift(key)
         }
-        console.log(key, this.keys)
+        // console.log(key, this.keys)
     }
 
     keyRealeased(key){
