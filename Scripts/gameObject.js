@@ -19,9 +19,9 @@ export class GameObject {
         this.width = this.sprite.width * this.scale;
         this.halfWidth = this.width / 2;
         this.height = this.sprite.height * this.scale;
-
     }
 
+    // Move the object towards a destinationPosition
     moveTowards(destinationPosition, speed){
         this.distanceToTravel.x = destinationPosition.x - this.position.x; 
         this.distanceToTravel.y = destinationPosition.y - this.position.y;
@@ -50,6 +50,7 @@ export class GameObject {
         return distance;
     }
 
+    // Draw the object with it's sprite
     draw(ctx){
 
         ctx.fillStyle = "blue";
