@@ -40,28 +40,44 @@ window.addEventListener('DOMContentLoaded', function () {
 
             this.eventUpdate = false;
             this.eventTimer = 0;
-            this.eventInterval = 60;
+            this.eventInterval = 120;
 
             this.numberOfEnemies = 5;
             this.enemiesArray = []; 
 
-            // Loop to spawn many neighborgs
-            for (let i = 0; i< this.numberOfEnemies; i++){
-                this.enemiesArray.push( new EnemyTypeOne({
-                    game: this,
-                    sprite: {
-                        image: document.getElementById('enemy1'),
-                        x: 0, 
-                        y: 2, 
-                        width: 64, 
-                        height: 64,
-                    },
-                    position: {
-                        x: Math.floor(Math.random() * 10 + 1) * TILE_SIZE, 
-                        y:  Math.floor(Math.random() * 15 + 1) * TILE_SIZE},
-                    scale: .8,
-                }))
-            }
+            // // Loop to spawn many neighborgs
+            // for (let i = 0; i< this.numberOfEnemies; i++){
+            //     this.enemiesArray.push( new EnemyTypeOne({
+            //         game: this,
+            //         sprite: {
+            //             image: document.getElementById('enemy1'),
+            //             x: 0, 
+            //             y: 2, 
+            //             width: 64, 
+            //             height: 64,
+            //         },
+            //         position: {
+            //             x: Math.floor(Math.random() * 10 + 1) * TILE_SIZE, 
+            //             y:  Math.floor(Math.random() * 15 + 1) * TILE_SIZE},
+            //         scale: .8,
+            //     }))
+            // }
+
+            this.enemy = new EnemyTypeOne({
+                game: this,
+                sprite: {
+                    image: document.getElementById('enemy1'),
+                    x: 0, 
+                    y: 2, 
+                    width: 64, 
+                    height: 64,
+                },
+                position: {
+                    x: Math.floor(Math.random() * 10 + 1) * TILE_SIZE, 
+                    y: Math.floor(Math.random() * 15 + 1) * TILE_SIZE
+                },
+                scale: .7,
+            })
 
         }
            
@@ -72,11 +88,14 @@ window.addEventListener('DOMContentLoaded', function () {
             this.hero.draw(ctx);
             this.hero.update(deltaTime);
 
-            // Loop to draw many neighborgs
-            this.enemiesArray.forEach ( enemy => {
-                enemy.draw(ctx);
-                enemy.update(deltaTime);
-            })
+            // // Loop to draw many neighborgs
+            // this.enemiesArray.forEach ( enemy => {
+            //     enemy.draw(ctx);
+            //     enemy.update(deltaTime);
+            // })
+
+            this.enemy.draw(ctx);
+            this.enemy.update(deltaTime);
 
             this.world.drawForeground(ctx)
 

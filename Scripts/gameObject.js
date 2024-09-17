@@ -21,8 +21,9 @@ export class GameObject {
         this.height = this.sprite.height * this.scale;
     }
 
-    // Move the object towards a destinationPosition
+    // Move the object towards destinationPosition
     moveTowards(destinationPosition, speed){
+        
         this.distanceToTravel.x = destinationPosition.x - this.position.x; 
         this.distanceToTravel.y = destinationPosition.y - this.position.y;
 

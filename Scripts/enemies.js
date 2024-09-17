@@ -4,7 +4,7 @@ import { COLS, ROWS, TILE_SIZE } from "./main.js";
 export class EnemyTypeOne extends GameObject {
     constructor({game, sprite, position, scale, speed}){
         super({game, sprite, position, scale})
-        this.speed = TILE_SIZE * speed || TILE_SIZE * 4;
+        this.speed = TILE_SIZE * speed || TILE_SIZE * 5;
         this.initialPosX = this.position.x;
         this.initialPosY = this.position.y; 
         this.currentPosX = this.position.x;
@@ -20,21 +20,28 @@ export class EnemyTypeOne extends GameObject {
 
         if (this.game.eventUpdate) {
 
-            const pickMove = Math.round(Math.random());
-            const newPos = Math.round(Math.random() * 2 - 1);
+            const pickMove = Math.floor(Math.round(Math.random() * 4));
+            // const newPos = Math.round(Math.random() * 2 - 1);
         
             const scaledSpeed = this.speed * (deltaTime / 1000);  // 1000 miliseconds
             const distance = this.moveTowards(this.destinationPosition, scaledSpeed);
 
             const arrived = distance <= scaledSpeed;
-            
+            // console.log(pickMove)
+
             if (arrived && this.currentMove < this.maxMoves)  {
 
-                if (pickMove === 0){ // move X
-                    this.destinationPosition.x += TILE_SIZE * newPos;
+                if (pickMove === 0){ // move -X
+                    this.destinationPosition.x -= TILE_SIZE;
                     this.currentPosX = this.destinationPosition.x;
-                } else{ // move Y
-                    this.destinationPosition.y += TILE_SIZE * newPos;
+                } else if (pickMove === 1){ // move X
+                    this.destinationPosition.x += TILE_SIZE;
+                    this.currentPosX = this.destinationPosition.x;
+                } else if (pickMove === 3) { // move +Y
+                    this.destinationPosition.y += TILE_SIZE;
+                    this.currentPosY = this.destinationPosition.y;
+                } else if (pickMove === 4) { // move -Y
+                    this.destinationPosition.y -= TILE_SIZE;
                     this.currentPosY = this.destinationPosition.y;
                 }
 
@@ -44,8 +51,6 @@ export class EnemyTypeOne extends GameObject {
 
                 this.difX = this.currentPosX - this.initialPosX;
                 this.difY = this.currentPosY - this.initialPosY;
-                // console.log(`x = ${this.currentPosX} y = ${this.currentPosY}`)
-                // console.log(`x = ${this.difX} y = ${this.difY}`)
 
                 if (Math.abs(this.difX) > 0){
                     this.destinationPosition.x = this.initialPosX;
@@ -63,22 +68,13 @@ export class EnemyTypeOne extends GameObject {
         }
 
 
-        // if (arrived){
-        //     if (pickMove === 0){
-        //         this.destinationPosition.x = this.position.x
-        //         this.position.x += TILE_SIZE * newPos;
+        // // Sprite animation according to state
+        // if (this.game.eventUpdate){
+        //     if (this.sprite.x < this.maxFrame) {
+        //         this.sprite.x ++
         //     } else {
-        //         this.destinationPosition.y = this.position.y
-        //         this.position.y += TILE_SIZE * newPos;
-        //     }          
-            
-        //     if (this.game.eventUpdate) {
-        //         console.log(this.position.x)
-        //         // this.destinationPosition.x += this.position.x;
-        //         // this.destinationPosition.y += this.position.y;
-                
+        //         this.sprite.x = 0;
         //     }
-            
         // }
     }
 
